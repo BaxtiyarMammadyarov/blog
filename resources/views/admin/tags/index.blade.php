@@ -11,7 +11,7 @@
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="{{route('admin.index')}}">Əsas Səhifə</a></li>
-                            <li class="breadcrumb-item active"><a href="{{route('admin.tags.create')}}">Tag əlavə et</a></li>
+                            <li class="breadcrum b-item active"><a href="{{route('admin.tags.create')}}">Tag əlavə et</a></li>
                         </ol>
                     </div>
                 </div>
@@ -23,42 +23,48 @@
 
             <!-- Default box -->
             <div class="card">
-                <div class="card-body">
-                    <div class="table-responsive">
-                        <table class="table table-hover">
-                            <thead>
-                                 <tr>
-                                     <th>Tag adı</th>
-                                     <th>Slug</th>
-                                     <th>Əməliyyat</th>
-                                 </tr>
-                            </thead>
-                            <tbody>
-                            @foreach($tags as $tag)
+                @if(count($tags) )
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-hover">
+                                <thead>
                                 <tr>
-                                    <th>{{$tag->name}}</th>
-                                    <th>{{$tag->slug}}</th>
-                                    <th>
-                                        <a href="{{route('admin.tags.edit',['id' => $tag -> id])}}" class="btn btn-outline-primary">
-                                           <i class="fas fa-pencil-alt"></i>
-                                        </a>
-                                        <a href="{{route('admin.tags.delete',['id' => $tag -> id])}}"  class="btn btn-outline-danger" onclick="return confirm('silmek isyirsinizmi')">
-                                            <i class="fas fa-trash-alt"></i>
-                                        </a>
-
-                                    </th>
+                                    <th>Tag adı</th>
+                                    <th>Slug</th>
+                                    <th>Əməliyyat</th>
                                 </tr>
-                            @endforeach
-                            </tbody>
+                                </thead>
+                                <tbody>
+                                @foreach($tags as $tag)
+                                    <tr>
+                                        <th>{{$tag->name}}</th>
+                                        <th>{{$tag->slug}}</th>
+                                        <th>
+                                            <a href="{{route('admin.tags.edit',['id' => $tag -> id])}}" class="btn btn-outline-primary">
+                                                <i class="fas fa-pencil-alt"></i>
+                                            </a>
+                                            <a href="{{route('admin.tags.delete',['id' => $tag -> id])}}"  class="btn btn-outline-danger" onclick="return confirm('silmek isyirsinizmi')">
+                                                <i class="fas fa-trash-alt"></i>
+                                            </a>
+
+                                        </th>
+                                    </tr>
+                                @endforeach
+                                </tbody>
 
 
 
-                        </table>
+                            </table>
+                        </div>
                     </div>
-                </div>
                 <div class="card-footer">
 {{--                    Footer--}}
                 </div>
+                @else
+                <div class="card-body">
+                    <div class="alert alert-info">Tag yoxdur</div>
+                </div>
+                @endif
             </div>
 
 
